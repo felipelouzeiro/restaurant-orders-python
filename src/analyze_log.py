@@ -12,8 +12,6 @@ def most_requested_dish_by_maria(data):
 
     # https://docs.python.org/3/howto/sorting.html
     most_requested_food = max(foods, key=lambda x: x[1])
-    print(data)
-    print("LISTAAAAAAAAAAAAAAAAA")
 
     return most_requested_food
 
