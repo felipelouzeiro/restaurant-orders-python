@@ -1,3 +1,7 @@
+from collections import Counter
+import operator
+
+
 class TrackOrders:
 
     def __init__(self):
@@ -13,7 +17,14 @@ class TrackOrders:
         })
 
     def get_most_ordered_dish_per_customer(self, customer):
-        pass
+        orders = []
+        for order in self.orders:
+            if order["customer"] == customer:
+                orders.append(order["order"])
+        ordered_dishes = Counter(orders)
+        most_requested_dishes = max(
+            ordered_dishes.items(), key=operator.itemgetter(1))[0]
+        return most_requested_dishes
 
     def get_never_ordered_per_customer(self, customer):
         menu = set(item["order"] for item in self.orders)
