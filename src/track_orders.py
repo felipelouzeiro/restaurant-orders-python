@@ -45,7 +45,11 @@ class TrackOrders:
         return days_of_week.difference(days_never_attended)
 
     def get_busiest_day(self):
-        pass
+        days_of_week = Counter(item["day"] for item in self.orders)
+        days = max(days_of_week.items(), key=operator.itemgetter(1))
+        return days[0]
 
     def get_least_busy_day(self):
-        pass
+        days_of_week = Counter(item["day"] for item in self.orders)
+        days = min(days_of_week.items(), key=operator.itemgetter(1))
+        return days[0]
