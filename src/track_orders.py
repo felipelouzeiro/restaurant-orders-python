@@ -17,6 +17,7 @@ class TrackOrders:
 
     def get_never_ordered_per_customer(self, customer):
         menu = set(item["order"] for item in self.orders)
+
         orders = set()
         for order in self.orders:
             if order["customer"] == customer:
@@ -24,7 +25,13 @@ class TrackOrders:
         return menu.difference(orders)
 
     def get_days_never_visited_per_customer(self, customer):
-        pass
+        days_of_week = set(item["day"] for item in self.orders)
+
+        days_never_attended = set()
+        for order in self.orders:
+            if order["customer"] == customer:
+                days_never_attended.add(order["day"])
+        return days_of_week.difference(days_never_attended)
 
     def get_busiest_day(self):
         pass
