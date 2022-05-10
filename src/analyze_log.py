@@ -16,6 +16,15 @@ def most_requested_by_maria(data):
     return most_requested_food[0]
 
 
+def arnaldo_ordered(data):
+    orders = 0
+    for order in data:
+        if order["name"] == "arnaldo":
+            if order["food"] == "hamburguer":
+                orders += 1
+    return orders
+
+
 def analyze_log(path_to_file):
     if '.csv' in path_to_file:
         try:
@@ -29,7 +38,9 @@ def analyze_log(path_to_file):
         raise FileNotFoundError(f"Extensão inválida: '{path_to_file}'")
 
     most_requested_by_maria_data = most_requested_by_maria(formatted_data)
+    arnaldo_ordered_data = arnaldo_ordered(formatted_data)
     with open('data/mkt_campaign.txt', 'w') as file:
         file.writelines([
             f"{most_requested_by_maria_data}\n",
+            f"{arnaldo_ordered_data}\n",
         ])
